@@ -43,11 +43,12 @@
   }
   .coluna { width: 100%; max-width: 480px; display: flex; flex-direction: column; align-items: center; }
 
+  /* Sem borda: o brasão já traz o próprio filete dourado, e um segundo anel
+     por fora vira dois aros concêntricos. O brilho vai de `drop-shadow`, que
+     segue o recorte da arte, e não de `box-shadow`, que faria um quadrado. */
   .bio__marca {
-    width: 118px; height: 118px; border-radius: 50%; object-fit: cover;
-    transform: scale(1.08);
-    border: 2px solid rgb(200 162 74 / .55);
-    box-shadow: 0 0 60px -18px rgb(200 162 74 / .8);
+    width: 124px; height: 124px;
+    filter: drop-shadow(0 0 34px rgb(200 162 74 / .45));
   }
   .bio h1 { font-size: 1.7rem; margin-top: 18px; }
   .bio__arroba {
@@ -115,7 +116,7 @@
 <body class="bio" data-zap="5548992223968" data-abre="18" data-fecha="23" data-dias="0,1,3,4,5,6">
 <main class="coluna">
 
-  <img class="bio__marca" src="../assets/logo.jpg" alt="Brasão da Pizza 38" width="118" height="118">
+  <img class="bio__marca" src="../assets/logo.png" alt="Brasão da Pizza 38" width="124" height="124">
   <h1>Pizza 38</h1>
   <a class="bio__arroba" href="https://www.instagram.com/pizza38__" target="_blank" rel="noopener">@pizza38__</a>
   <p class="bio__frase">Pizza a casa tua e pizza casa nostra. Garopaba, desde 1988.</p>

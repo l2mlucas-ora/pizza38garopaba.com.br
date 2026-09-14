@@ -167,9 +167,14 @@ ul { list-style: none; padding: 0; }
 }
 .topo__wrap { display: flex; align-items: center; justify-content: space-between; gap: 20px; width: 100%; }
 .topo__marca { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--creme); }
+/*
+  O brasão é PNG com fundo transparente, feito pela casa para fundo escuro —
+  ele já vem redondo. Por isso não tem máscara nem `scale(1.08)` aqui: aquilo
+  existia para esconder a moldura quadrada do JPG antigo e, sobre o arquivo
+  oficial, só cortaria o filete dourado da borda.
+*/
 .topo__marca img {
-  width: 52px; height: 52px; border-radius: 50%; object-fit: cover;
-  transform: scale(1.08); transition: width .3s, height .3s;
+  width: 52px; height: 52px; transition: width .3s, height .3s;
 }
 .topo.fixo .topo__marca img { width: 40px; height: 40px; }
 .topo__nome b { font-family: var(--fonte-titulo); font-size: 1.2rem; font-weight: 700; letter-spacing: .02em; }
@@ -354,6 +359,17 @@ ul { list-style: none; padding: 0; }
 @media (min-width: 900px) { .duo { grid-template-columns: 1fr 1fr; } .duo--invertido > :first-child { order: 2; } }
 .duo__foto { border-radius: var(--radius-lg); overflow: hidden; border: 1px solid var(--linha); }
 .duo__foto img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
+
+/* Retrato em pé. A foto do dono é preto e branco de propósito: a casa inteira
+   é fogo laranja, e uma pessoa em cor no meio disso vira mais uma foto de
+   comida. Em P&B ela é a única presença humana da página e para o olho. */
+.retrato { margin: 0; border-radius: var(--radius-lg); overflow: hidden; border: 1px solid var(--linha); position: relative; }
+.retrato img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 12%; }
+.retrato figcaption {
+  position: absolute; inset: auto 0 0; padding: 44px 22px 18px;
+  font-size: .86rem; color: var(--cinza);
+  background: linear-gradient(to top, rgb(7 17 12 / .92), transparent);
+}
 
 /* ------------------------------------------------------------
    Linha do tempo da história
