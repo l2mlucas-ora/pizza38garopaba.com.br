@@ -22,8 +22,9 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap">
 <link rel="stylesheet" href="assets/styles.css">
 
-<!-- Ficha da casa para o Google. Endereço e dias ainda são provisórios:
-     ver a lista de preenchimento no CLAUDE.md do projeto. -->
+<!-- Ficha da casa para o Google. Endereço, coordenadas e horário saíram do
+     dado estruturado do cardápio oficial da casa — é ela publicando os
+     próprios dados, não suposição nossa. -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -31,14 +32,27 @@
   "name": "Pizza 38",
   "servesCuisine": "Pizza",
   "priceRange": "$$",
-  "image": "https://www.pizza38garopaba.com.br/assets/logo.png",
+  "image": "https://www.pizza38garopaba.com.br/assets/og-image-1200x630.jpg",
+  "logo": "https://www.pizza38garopaba.com.br/assets/logo.png",
   "url": "https://www.pizza38garopaba.com.br/",
   "telephone": "+55 48 99222-3968",
+  "employee": {
+    "@type": "Person",
+    "name": "Xexeu Antunes",
+    "jobTitle": "Pizzaiolo e proprietário"
+  },
   "address": {
     "@type": "PostalAddress",
+    "streetAddress": "Rod. Abílio Manoel de Lima, km 1, Sala 1",
     "addressLocality": "Garopaba",
     "addressRegion": "SC",
+    "postalCode": "88495-000",
     "addressCountry": "BR"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": -28.0477837,
+    "longitude": -48.6371435
   },
   "openingHours": "We-Mo 18:00-23:00",
   "sameAs": ["https://www.instagram.com/pizza38__"]
@@ -129,7 +143,10 @@
         <p class="kicker sobe">A casa</p>
         <h2 class="sobe" style="--atraso: 60ms">Trinta e oito anos<br>fazendo pizza.</h2>
         <p class="lead sobe" style="--atraso: 120ms">
-          O dono da casa fez a primeira pizza em 1988, em São Paulo, aos dezessete
+          <!-- TODO: confirmar com a casa se o nome leva acento — "Xexéu" é a
+               grafia comum do apelido, mas nome de gente a gente escreve como
+               o dono escreve, não como o dicionário. -->
+          Xexeu Antunes fez a primeira pizza em 1988, em São Paulo, aos dezessete
           anos — depois de sair de Campo Alegre de Lourdes, no sertão da Bahia.
           Passou por Garopaba em 97, por Porto Alegre em 99, e voltou.
         </p>
