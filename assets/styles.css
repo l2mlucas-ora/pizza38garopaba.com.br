@@ -365,6 +365,30 @@ ul { list-style: none; padding: 0; }
    comida. Em P&B ela é a única presença humana da página e para o olho. */
 .retrato { margin: 0; border-radius: var(--radius-lg); overflow: hidden; border: 1px solid var(--linha); position: relative; }
 .retrato img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 12%; }
+/* ------------------------------------------------------------
+   Citação.
+
+   A história da casa é contada com a fala do dono, não com a nossa.
+   Aspas em serifa, filete dourado à esquerda — e sem itálico: o texto
+   é longo e itálico longo cansa a vista no escuro.
+   ------------------------------------------------------------ */
+.citacao {
+  margin: 0; padding: 4px 0 4px 22px;
+  border-left: 2px solid var(--ouro);
+  font-family: var(--fonte-titulo); font-size: clamp(1.15rem, 2.2vw, 1.5rem);
+  line-height: 1.42; color: var(--creme);
+}
+h2 + .citacao { margin-top: 20px; }
+.citacao::before { content: "“"; color: var(--ouro); margin-right: 2px; }
+.citacao::after { content: "”"; color: var(--ouro); margin-left: 2px; }
+
+.citacao--grande {
+  border: 0; padding: 0;
+  font-size: clamp(1.6rem, 4.4vw, 2.6rem); line-height: 1.24;
+  text-wrap: balance;
+}
+.citacao--grande b { color: var(--ouro); font-weight: 600; }
+
 /* O álbum: duas fotos antigas lado a lado. Quadradas e do mesmo tamanho —
    proporções diferentes ali viram colagem, não álbum. */
 .album { display: grid; gap: 22px; grid-template-columns: 1fr; margin-top: 38px; }
