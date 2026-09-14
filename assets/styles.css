@@ -188,7 +188,22 @@ ul { list-style: none; padding: 0; }
 }
 .menu a:hover { color: var(--creme); background: rgb(246 248 249 / .07); }
 .menu a[aria-current="page"] { color: var(--ouro); }
-.menu .btn { margin-left: 10px; padding: 11px 22px; font-size: .92rem; }
+/*
+  O botão do menu É um <a>, e `.menu a { color: var(--cinza) }` (0,1,1) ganha
+  de `.btn--ouro { color: var(--verde) }` (0,1,0). Resultado: o texto saía em
+  cinza-esverdeado sobre o ouro — 1,2:1 de contraste, o CTA mais importante da
+  página praticamente apagado. Estas regras devolvem a cor da variante com
+  especificidade suficiente para vencer.
+
+  Regra geral, para não repetir o erro: nunca sobrescrever cor de texto de uma
+  variante de botão por contexto. Se um lugar precisa de outra cor, cria-se
+  outra variante.
+*/
+.menu .btn { margin-left: 10px; padding: 12px 24px; font-size: .95rem; }
+.menu a.btn--ouro { color: var(--verde); }
+.menu a.btn--ouro:hover { color: var(--verde); background: var(--ouro-claro); }
+.menu a.btn--contorno { color: var(--creme); }
+.menu a.btn--zap { color: #06331c; }
 
 .menu-btn {
   display: none; width: 46px; height: 46px; border: 1.5px solid var(--linha);
