@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+# O link da bio não entra no índice: ele não deve competir com o site.
+Disallow: /links/
+
+Sitemap: https://www.pizza38garopaba.com.br/sitemap.xml
