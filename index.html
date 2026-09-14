@@ -170,7 +170,7 @@
           <span class="prato__corpo">
             <h3>Pequena · 25 cm</h3>
             <p>Até 2 sabores. Serve uma pessoa com fome, ou duas dividindo.</p>
-            <span class="prato__preco"><small>a partir de</small>R$ 39,90</span>
+            <span class="prato__preco" data-preco="pizza-pequena"><small>a partir de</small>R$ 39,90</span>
           </span>
         </a>
 
@@ -181,7 +181,7 @@
           <span class="prato__corpo">
             <h3>Grande · 35 cm</h3>
             <p>Até 2 sabores. A mais pedida da casa, em qualquer época do ano.</p>
-            <span class="prato__preco"><small>a partir de</small>R$ 59,90</span>
+            <span class="prato__preco" data-preco="pizza-grande"><small>a partir de</small>R$ 59,90</span>
           </span>
         </a>
 
@@ -192,7 +192,7 @@
           <span class="prato__corpo">
             <h3>Família · 40 cm</h3>
             <p>Até 3 sabores. Para quatro ou cinco pessoas à mesa.</p>
-            <span class="prato__preco"><small>a partir de</small>R$ 74,90</span>
+            <span class="prato__preco" data-preco="pizza-familia"><small>a partir de</small>R$ 74,90</span>
           </span>
         </a>
 
@@ -203,7 +203,7 @@
           <span class="prato__corpo">
             <h3>Calzone · P e G</h3>
             <p>Fechado, dourado por fora. Salgado ou doce.</p>
-            <span class="prato__preco"><small>a partir de</small>R$ 39,90</span>
+            <span class="prato__preco" data-preco="calzone-p"><small>a partir de</small>R$ 39,90</span>
           </span>
         </a>
 
@@ -271,17 +271,19 @@
           <span data-agora-texto>Quarta a segunda, das 18h às 23h</span>
         </p>
 
-        <!-- TODO: confirmar com a casa — endereço provisório. -->
+        <!-- Endereço, coordenadas e dias saíram do dado estruturado do
+             cardápio oficial da casa (schema.org/Restaurant em
+             pizzaria38.dvstore.com.br) — é a própria casa publicando. -->
         <p class="lead sobe" style="--atraso: 160ms; margin-top: 18px">
-          Centro de Garopaba — SC.<br>
-          <span class="mini">Endereço completo na página de contato.</span>
+          Rod. Abílio Manoel de Lima, km 1 — Garopaba, SC.<br>
+          <span class="mini">Sala 1 · CEP 88495-000</span>
         </p>
 
         <div class="heroi__acoes sobe" style="--atraso: 220ms">
           <a class="btn btn--zap" data-zap-msg="Olá! Gostaria de fazer um pedido na Pizza 38." href="#">
             Falar no WhatsApp
           </a>
-          <a class="btn btn--contorno" href="contato.html">Como chegar</a>
+          <a class="btn btn--contorno" href="https://www.google.com/maps/search/?api=1&amp;query=-28.0477837,-48.6371435" target="_blank" rel="noopener">Como chegar</a>
         </div>
       </div>
     </div>

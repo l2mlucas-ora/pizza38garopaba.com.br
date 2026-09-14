@@ -71,15 +71,21 @@
         <div class="grade" style="gap: 26px">
           <div class="sobe" style="--atraso: 60ms">
             <h4 style="font-family: var(--fonte-corpo); font-size: .74rem; letter-spacing: .2em; text-transform: uppercase; color: var(--ouro)">Endereço</h4>
-            <!-- TODO: confirmar com a casa — endereço provisório. -->
-            <p style="margin-top: 8px">Centro · Garopaba — SC</p>
-            <p class="mini">Rua e número a confirmar.</p>
+            <!-- Endereço e coordenadas vieram do dado estruturado
+                 (schema.org/Restaurant) do cardápio oficial da casa. É a
+                 própria casa publicando — e bate com o CEP de Garopaba.
+                 TODO: confirmar com a casa como ela prefere escrever ("sala 1"
+                 ou o nome do ponto, se houver). -->
+            <p style="margin-top: 8px">Rod. Abílio Manoel de Lima, km 1 — Sala 1</p>
+            <p class="mini">Garopaba — SC · CEP 88495-000</p>
           </div>
 
           <div class="sobe" style="--atraso: 120ms">
             <h4 style="font-family: var(--fonte-corpo); font-size: .74rem; letter-spacing: .2em; text-transform: uppercase; color: var(--ouro)">Horário</h4>
-            <!-- TODO: confirmar com a casa — o Instagram diz "quarta a segunda"
-                 e o link da bio diz "terça a domingo". Escolhemos o do Instagram. -->
+            <!-- A contradição morreu: o horário publicado pela própria casa
+                 no cardápio (openingHoursSpecification) lista domingo, segunda
+                 e de quarta a sábado, 18h–23h. Ou seja, fecha terça — que é o
+                 que o Instagram dizia. `data-dias` no <body> já reflete isso. -->
             <p style="margin-top: 8px">Quarta a segunda, das 18h às 23h</p>
             <p class="mini">Fechado às terças.</p>
           </div>
@@ -93,7 +99,7 @@
 
         <div class="heroi__acoes sobe" style="--atraso: 240ms">
           <a class="btn btn--zap" data-zap-msg="Olá! Gostaria de fazer um pedido na Pizza 38." href="#">Falar no WhatsApp</a>
-          <a class="btn btn--contorno" href="https://www.google.com/maps/search/?api=1&amp;query=Pizza+38+Garopaba+SC" target="_blank" rel="noopener">Abrir no mapa</a>
+          <a class="btn btn--contorno" href="https://www.google.com/maps/search/?api=1&amp;query=-28.0477837,-48.6371435" target="_blank" rel="noopener">Abrir no mapa</a>
         </div>
       </div>
 

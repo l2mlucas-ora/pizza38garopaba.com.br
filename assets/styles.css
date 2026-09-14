@@ -365,6 +365,12 @@ ul { list-style: none; padding: 0; }
    comida. Em P&B ela é a única presença humana da página e para o olho. */
 .retrato { margin: 0; border-radius: var(--radius-lg); overflow: hidden; border: 1px solid var(--linha); position: relative; }
 .retrato img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 12%; }
+/* O álbum: duas fotos antigas lado a lado. Quadradas e do mesmo tamanho —
+   proporções diferentes ali viram colagem, não álbum. */
+.album { display: grid; gap: 22px; grid-template-columns: 1fr; margin-top: 38px; }
+@media (min-width: 760px) { .album { grid-template-columns: 1fr 1fr; } }
+.retrato--quadrado img { aspect-ratio: 1 / 1; object-position: center; }
+
 .retrato figcaption {
   position: absolute; inset: auto 0 0; padding: 44px 22px 18px;
   font-size: .86rem; color: var(--cinza);
