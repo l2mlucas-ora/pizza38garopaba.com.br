@@ -1,0 +1,46 @@
+# Mantém os preços do site iguais aos do cardápio da casa, sozinho.
+#
+# Todo dia de madrugada (e no botão, quando alguém quiser agora) busca o feed
+# de produtos da pizzaria, reescreve os números nas páginas e comita se mudou.
+# O Pages republica no commit. Se nada mudou, não comita nada.
+#
+# Se o feed cair ou mudar de formato, o passo falha e o site fica como está —
+# com o último preço bom. É o comportamento certo: preço errado no ar é pior
+# que preço de ontem.
+
+name: Preços do cardápio
+
+on:
+  schedule:
+    - cron: "0 8 * * *"   # 05h em Brasília
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  atualizar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      # O script mora um nível acima do repositório do site quando se trabalha
+      # na máquina; aqui ele vem junto, em scripts/.
+      - name: Ler o cardápio e atualizar as páginas
+        run: node scripts/precos.mjs
+
+      - name: Comitar se mudou
+        run: |
+          if git diff --quiet; then
+            echo "Preços em dia — nada a comitar."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Preços do cardápio, atualizados automaticamente"
+          git push
