@@ -107,7 +107,13 @@ const tabela = apurar(itens);
 console.log(`Feed: ${itens.length} itens.`);
 for (const [k, v] of Object.entries(tabela)) console.log(`  ${k.padEnd(15)} ${reais(v)}`);
 
+// Duas perguntas diferentes. `mudou` é "o arquivo precisa ser regravado" — e
+// a data de conferência muda todo dia, então quase sempre é sim. `precoMudou`
+// é "o site estava com preço errado", e é só isso que o `--conferir` cobra:
+// sem a separação, ele acusava "o cardápio mudou" em todo dia seguinte ao
+// último carimbo, com os preços certinhos.
 let mudou = false;
+let precoMudou = false;
 
 for (const rel of PAGINAS) {
   const arquivo = path.join(RAIZ, rel);
@@ -124,6 +130,7 @@ for (const rel of PAGINAS) {
     );
     depois = depois.replace(re, (_, cabeca) => cabeca + reais(valor));
   }
+  if (depois !== antes) precoMudou = true;
 
   depois = depois.replace(
     /(<span data-preco-data>)[^<]*/g,
@@ -137,7 +144,9 @@ for (const rel of PAGINAS) {
   }
 }
 
-if (!mudou) {
+if (conferir && !precoMudou) {
+  console.log("\nPreços em dia: o site bate com o cardápio.");
+} else if (!mudou) {
   console.log("\nNada mudou: o site já está com os preços do cardápio.");
 } else if (conferir) {
   console.error("\nO cardápio mudou e o site não acompanhou. Rode sem --conferir.");
