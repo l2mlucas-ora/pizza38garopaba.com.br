@@ -420,8 +420,6 @@ h2 + .citacao { margin-top: 20px; }
 
 /* O álbum: duas fotos antigas lado a lado. Quadradas e do mesmo tamanho —
    proporções diferentes ali viram colagem, não álbum. */
-.album { display: grid; gap: 22px; grid-template-columns: 1fr; margin-top: 38px; }
-@media (min-width: 760px) { .album { grid-template-columns: 1fr 1fr; } }
 .retrato--quadrado img { aspect-ratio: 1 / 1; object-position: center; }
 
 .retrato figcaption {
