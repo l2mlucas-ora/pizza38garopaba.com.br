@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Abrindo o cardápio — Pizza 38</title>
+<meta name="theme-color" content="#0C2118">
+<link rel="icon" href="/assets/favicon-32.png" sizes="32x32">
+
+<!-- Página de passagem de todo botão de pedir.
+
+     A Cloudflare Web Analytics não tem evento de clique. Então o clique vira
+     uma visita: cada botão aponta para /pedir/?de=<qual botão>, esta página
+     conta no painel e segue para o delivery.
+
+     No painel, cada botão aparece como um caminho próprio — /pedir/heroi/,
+     /pedir/menu/, /pedir/bio/… — porque a Cloudflare agrupa por caminho e
+     ignora a query. O replaceState abaixo reescreve o endereço antes de o
+     medidor ler, e a origem (a página onde o botão estava) sai no referrer.
+
+     O redirecionamento espera o envio da visita TERMINAR. O medidor da
+     Cloudflare manda a visita por XHR logo depois do "load", e sair da página
+     cancela o XHR no meio: redirecionar no load perdia a contagem de vez em
+     quando (medido em 18/09/2026 — com o script em cache, perdia). Então a
+     página observa o XHR para /cdn-cgi/rum e só segue no fim dele.
+     Sem medidor (sem token), segue na hora. Medidor bloqueado por bloqueador
+     de anúncio, segue na hora. E, se nada disso responder, 2 s depois segue
+     assim mesmo — o cliente com fome vale mais que a contagem. -->
+<noscript><meta http-equiv="refresh" content="0; url=https://pizzaria38.dvstore.com.br/menu?utm_source=site&amp;utm_campaign=pedido"></noscript>
+
+<script>
+  (function () {
+    var de = (new URLSearchParams(location.search).get('de') || 'site')
+      .toLowerCase().replace(/[^a-z0-9-]/g, '').slice(0, 30) || 'site';
+    // O destino é fixo; da query só entra o rótulo, limpo. Não há como usar
+    // esta página para mandar alguém a outro endereço.
+    var destino = 'https://pizzaria38.dvstore.com.br/menu?utm_source=site&utm_medium=' +
+      de + '&utm_campaign=pedido';
+    window.destinoPedido = destino;
+
+    history.replaceState(null, '', '/pedir/' + de + '/');
+
+    var foi = false;
+    window.irAoPedido = function () { if (!foi) { foi = true; location.replace(destino); } };
+    setTimeout(window.irAoPedido, 2000);
+
+    // Segue quando o envio da visita terminar (bem ou mal).
+    var abrir = XMLHttpRequest.prototype.open;
+    XMLHttpRequest.prototype.open = function (metodo, url) {
+      if (String(url).indexOf('/cdn-cgi/rum') !== -1) {
+        this.addEventListener('loadend', window.irAoPedido);
+      }
+      return abrir.apply(this, arguments);
+    };
+  })();
+</script>
+<!-- Caminho absoluto: depois do replaceState, um relativo resolveria contra
+     /pedir/<botão>/ e não acharia o arquivo. -->
+<script src="/assets/medir.js"></script>
+<script>
+  if (!window.medidor) window.irAoPedido();
+  else window.medidor.addEventListener('error', window.irAoPedido);
+</script>
+
+<style>
+  html, body { height: 100%; margin: 0 }
+  body {
+    display: grid; place-items: center; text-align: center;
+    background: #0C2118; color: #F6F8F9;
+    font: 500 1.05rem/1.5 Inter, "Segoe UI", system-ui, -apple-system, sans-serif;
+  }
+  img { width: 88px; height: 88px }
+  p { margin: 18px 0 6px }
+  a { color: #E0C071 }
+</style>
+</head>
+<body>
+  <div>
+    <img src="/assets/logo.png" alt="Pizza 38" width="88" height="88">
+    <p>Abrindo o cardápio…</p>
+    <a id="ir" href="https://pizzaria38.dvstore.com.br/menu?utm_source=site&amp;utm_campaign=pedido">Se não abrir, toque aqui</a>
+  </div>
+  <script>document.getElementById('ir').href = window.destinoPedido;</script>
+</body>
+</html>
